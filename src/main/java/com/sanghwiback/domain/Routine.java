@@ -15,6 +15,6 @@ public class Routine {
     private String updateDate;
     private String time_s;
     private String time_e;
-    @OneToMany
-    private List<Activity> activities;
+//    @OneToMany
+//    private List<Activity> activities;
 }

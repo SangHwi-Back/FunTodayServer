@@ -23,17 +23,17 @@ public class SpringConfig {
     }
 
     @Bean
-    public GoalRoutineActivityRepository<Goal> goalRepository() {
+    public JpaGoalRepository goalRepository() {
         return new JpaGoalRepository(em);
     }
 
     @Bean
-    public GoalRoutineActivityRepository<Routine> routineRepository() {
+    public JpaRoutineRepository routineRepository() {
         return new JpaRoutineRepository(em);
     }
 
     @Bean
-    public GoalRoutineActivityRepository<Activity> activityRepository() {
+    public JpaActivityRepository activityRepository() {
         return new JpaActivityRepository(em);
     }
 }

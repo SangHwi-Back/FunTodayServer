@@ -15,21 +15,27 @@ public class JpaRoutineRepository implements GoalRoutineActivityRepository<Routi
 
     @Override
     public Routine save(Routine obj) {
+        em.persist(obj);
         return null;
     }
 
     @Override
     public Optional<Routine> findById(String id) {
-        return Optional.empty();
+        Routine routine = em.find(Routine.class, id);
+        return Optional.ofNullable(routine);
     }
 
     @Override
     public Optional<Routine> findByName(String name) {
-        return Optional.empty();
+        List<Routine> result = em.createQuery("select r from Routine r where r.name = :name", Routine.class)
+                .setParameter("name", name)
+                .getResultList();
+        return result.stream().findAny();
     }
 
     @Override
     public List<Routine> findAll() {
-        return null;
+        return em.createQuery("select r from Routine r", Routine.class)
+                .getResultList();
     }
 }

@@ -15,21 +15,27 @@ public class JpaActivityRepository implements GoalRoutineActivityRepository<Acti
 
     @Override
     public Activity save(Activity obj) {
-        return null;
+        em.persist(obj);
+        return obj;
     }
 
     @Override
     public Optional<Activity> findById(String id) {
-        return Optional.empty();
+        Activity activity = em.find(Activity.class, id);
+        return Optional.ofNullable(activity);
     }
 
     @Override
     public Optional<Activity> findByName(String name) {
-        return Optional.empty();
+        List<Activity> result = em.createQuery("select a from Activity a where a.name = :name", Activity.class)
+                .setParameter("name", name)
+                .getResultList();
+        return result.stream().findAny();
     }
 
     @Override
     public List<Activity> findAll() {
-        return null;
+        return em.createQuery("select a from Activity a", Activity.class)
+                .getResultList();
     }
 }

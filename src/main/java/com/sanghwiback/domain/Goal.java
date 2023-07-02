@@ -16,8 +16,8 @@ public class Goal {
     private String description;
     private String regDate;
     private String updateDate;
-    @OneToMany
-    private List<Routine> routines;
+//    @OneToMany
+//    private List<Routine> routines;
     private boolean isFold = false;
     @Column(name = "timeS")
     private String time_s;
